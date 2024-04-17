@@ -2,7 +2,7 @@ import java.util.Scanner;
 public class App {
     private static Scanner scanner = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
-        double prisVuxen = 299.90;
+       // double prisVuxen = 299.90;
         int antalPersoner = 19;
         int[] födelsedatum = new int[antalPersoner];
         //String[] personNamn = new String[antalPersoner];
@@ -15,10 +15,9 @@ public class App {
                     break;
                 case 2:
                     ledigaPlatser(födelsedatum);
-
                     break;
                 case 3:
-
+                    visnter(prisVuxen);
                     break;
 
                 default:
@@ -47,9 +46,9 @@ public class App {
     }
     private static void menyVal(){
         System.out.println("Valj alternativ");
-        System.out.println("1. Boka en obokad plats:");
-        System.out.println("2");
-        System.out.println("3");
+        System.out.println("1. Boka en obokad plats");
+        System.out.println("2. Visa bokade platser");
+        System.out.println("3. Beräkna vinster");
         System.out.println("4. Avsluta.");
     }
     private static int[] bokaPlats(int[] födelsedatum){
@@ -77,6 +76,11 @@ public class App {
             System.out.println(födelsedatum[index]);
         }
 
+    }
+    private static double vinster(int vuxnaSålda, int barnSålda){ //antalet vuxa biljätter sålda och antalet bar
+        double prisVuxen = 299.90;
+        double prisBarn = 199.90;
+        }
     }
     private static int bussBokning(int[] födelsedatum){
         
