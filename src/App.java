@@ -5,6 +5,7 @@ public class App {
        // double prisVuxen = 299.90;
         int antalPersoner = 20;
         int[] födelsedatum = new int[antalPersoner];
+        //int [][] sittplatser;
       //  String[] personNamn = new String[antalPersoner];  
         menyVal();
         int alternativ = Integer.parseInt(scanner.nextLine());
