@@ -1,30 +1,29 @@
 import java.util.Scanner;
 public class App {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final double PRIS_PER_PLATS_VUXEN = 299.90;
+    private static final double PRIS_PER_PLATS_BARN = 149.90;
+    private static final int ANTAL_PERSONER = 20;
+    private static int[] födelsedatum = new int[ANTAL_PERSONER];
     public static void main(String[] argsStrings) throws Exception {
-       // double prisVuxen = 299.90;
-        int antalPersoner = 20;
-        int[] födelsedatum = new int[antalPersoner];
-        //int [][] sittplatser;
-      //  String[] personNamn = new String[antalPersoner];  
+        Scanner scanner = new Scanner(System.in);
         menyVal();
         int alternativ = Integer.parseInt(scanner.nextLine());
-        while(alternativ!=6){
+        while(alternativ!=8){
             switch (alternativ) {
                 case 1:
-                    födelsedatum = bokaPlats(födelsedatum);
+                    födelsedatum = bokaPlats(scanner);
                     break;
                 case 2:
-                    ledigaPlatser(födelsedatum);
+                    ledigaPlatser();
                     break;
                 case 3:
-                    vinster(födelsedatum);
+                    vinster(scanner);
                     break;
                 case 4:
-                    hittaBokning(födelsedatum);
+                    hittaBokning(scanner);
                     break;
                 case 5:
-                    födelsedatum=avboka(födelsedatum);
+                    födelsedatum=avboka(scanner);
                     break;
                 default:
                     break;
@@ -43,7 +42,7 @@ public class App {
         System.out.println("5. Avboka bokad platts.");
         System.out.println(". Avsluta.");
     }
-    public static int[] bokaPlats(int[] födelsedatum){
+    public static int[] bokaPlats(Scanner scanner){
         try {
             System.out.println("Välj sittplats nummer för bussresa. Plattser 1-20.");
             int sittplats = Integer.parseInt(scanner.nextLine());   
@@ -70,13 +69,13 @@ public class App {
         }        
         return födelsedatum;
     }
-    private static void ledigaPlatser(int[] födelsedatum){
+    private static void ledigaPlatser(){
         for (int index = 0; index < födelsedatum.length; index++) {
             System.out.println(födelsedatum[index]);
         }
 
     }
-    private static void vinster(int[] födelsedatum){ //antalet vuxa biljätter sålda och antalet bar
+    private static void vinster(Scanner scanner){ //antalet vuxa biljätter sålda och antalet bar
         double prisVuxen = 299.90;
         double prisBarn = 149.90;
         double summa = 0;
@@ -91,12 +90,12 @@ public class App {
         }
         System.out.println("Vinsten av sålda biljätter är: "+summa);
     }
-    private static void hittaBokning(int[] födelsedatumArray){
+    private static void hittaBokning(Scanner scanner){
         try {
             System.out.println("Ange personnummer för att hitta bokning av sittplats.");
             int personnummer = Integer.parseInt(scanner.nextLine());  
-            for(int i = 0; i<födelsedatumArray.length;i++){
-                if(födelsedatumArray[i]==personnummer){
+            for(int i = 0; i<födelsedatum.length;i++){
+                if(födelsedatum[i]==personnummer){
                     System.out.println("Denna person har bokat platsen: "+(i+1));
                     return;
                 }
@@ -106,7 +105,7 @@ public class App {
             System.out.println("Fel format av datum, försök (YYYYMMDD).");
         }
     }
-    private static int[] avboka(int[] födelsedatum){
+    private static int[] avboka(Scanner scanner){
         System.out.println("Ange personnumret du vill avboka.");
         int personnummer = Integer.parseInt(scanner.nextLine());
         for (int i = 0; i < födelsedatum.length; i++) {
